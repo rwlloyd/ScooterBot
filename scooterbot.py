@@ -6,8 +6,8 @@ import PG9038S as bt
 
 # creates an object for the serial port
 try:
-    #arduinoData = serial.Serial("/dev/ttyUSB1", 115200, timeout=1)
-    arduinoData = serial.Serial("/dev/ttyS0", 115200, timeout=1)
+    arduinoData = serial.Serial("/dev/ttyUSB0", 115200, timeout=1)
+    #arduinoData = serial.Serial("/dev/ttyS0", 115200, timeout=1)
 except:
     print("Arduino Failed to connect")
     pass
@@ -27,21 +27,21 @@ x = 128
 y = 128
 
 def send(message_to_send):
-        """
-        Function to send a message_to_send made of ints, convert them to bytes and then send them over a serial port
-        message length, 10 bytes.
-        """
-        messageLength = 4
-        message = []
-        try: 
-            for i in range(0, messageLength):
-                message.append(message_to_send[i].to_bytes(1, 'little'))
-            for i in range(0, messageLength):
-                arduinoData.write(message[i])
-            #print("SENT:", message)
-        except:
-            print("Failed to send serial message")
-            pass
+    """
+    Function to send a message_to_send made of ints, convert them to bytes and then send them over a serial port
+    message length, 10 bytes.
+    """
+    messageLength = 4
+    message = []
+    try:
+        for i in range(0, messageLength):
+            message.append(message_to_send[i].to_bytes(1, 'little'))
+        for i in range(0, messageLength):
+            arduinoData.write(message[i])
+        #print("SENT:", message)
+    except:
+        print("Failed to send serial message")
+        pass
 
 def receive():
     """
@@ -52,7 +52,7 @@ def receive():
     last_message = []
     try:
         while arduinoData.in_waiting > 0:
-            for range(0, messageLength):
+            for i in range(0, messageLength):
                 last_message.append(int.from_bytes(arduinoData.read(), "little"))
         #print("GOT: ", last_message)
         return last_message
