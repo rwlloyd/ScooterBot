@@ -2,7 +2,8 @@
 A robot based on a three wheeled mobility scooter chassis. Drive motor via transaxle DC motor and Steering angle control
 via 24V linear actuator with potentiometer feedback.
 
-r.w.lloyd@gmail.com
+Rob Lloyd
+
 Lincoln, UK. 2019 - 21
 
 Power.
