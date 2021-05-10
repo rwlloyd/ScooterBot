@@ -54,69 +54,96 @@ pip3 install pyserial
 2. Power on pi
 
 ## More detailed...:
-```
-sudo bluetoothctl
-scan on 
-```
+
+	sudo bluetoothctl
+
+Get the bluetooth to have a look around
+
+	scan on 
+
 Write down the mac address of the correct controller. (Tab-complete works though)
-```
-connect XX:XX:XX:XX:XX:XX
-pair XX:XX:XX:XX:XX:XX
-trust XX:XX:XX:XX:XX:XX
-exit
-```
+
+	connect XX:XX:XX:XX:XX:XX
+	pair XX:XX:XX:XX:XX:XX
+	trust XX:XX:XX:XX:XX:XX
+	exit
+
 You should now have a new device in your inputs directory. Check with;
-```
-ls /dev/input/
-```
 
-## To add the service and make it run on startup
-```
-sudo touch /etc/systemd/system/remoteControl.service
-sudo nano /etc/systemd/system/remoteControl.service
-```
+	ls /dev/input/
+
+
+To add the service and make it run on startup
+
+	sudo touch /etc/systemd/system/remoteControl.service
+	sudo nano /etc/systemd/system/remoteControl.service
+
 Add the following lines to the file
-```
-[Unit]
-Description=Service for Bluetooth Remote Control
-After=getty.target
 
-[Service]
-ExecStart=sh launcher.sh
-WorkingDirectory=/home/pi/scripts
-StandardOutput=inherit
-StandardError=inherit
-Restart=always
-User=pi
+	[Unit]
+	Description=Service for Bluetooth Remote Control
+	After=getty.target
 
-[Install]
-WantedBy=multi-user.target
-```
+	[Service]
+	ExecStart=sh launcher.sh
+	WorkingDirectory=/home/pi/scripts
+	StandardOutput=inherit
+	StandardError=inherit
+	Restart=always
+	User=pi
+
+	[Install]
+	WantedBy=multi-user.target
+
 Make the file executable
-```
-sudo chmod a+r /etc/systemd/system/remoteControl.service
-```
+
+	sudo chmod a+r /etc/systemd/system/remoteControl.service
+
 Reload systemctl
-```
-sudo systemctl daemon-reload
-```
+
+	sudo systemctl daemon-reload
+
 Start the new service
-```
-sudo systemctl start remoteControl.service
-```
+
+	sudo systemctl start remoteControl.service
+
 Check everything is working
-```
-sudo systemctl stop remoteControl.service
-sudo systemctl enable remoteControl.service
-sudo reboot
-```
+
+	sudo systemctl stop remoteControl.service
+	sudo systemctl enable remoteControl.service
+	sudo reboot
+
 Everything should work without errors
 
 To help debugging:
-```
-sudo systemctl status remoteControl.service
-```
+
+	sudo systemctl status remoteControl.service
+
 To tail the cmd line output of the service...
-```
-journalctl -f -u remoteControl.service 
-```
+
+	journalctl -f -u remoteControl.service 
+
+
+
+
+# ROS-ification
+
+Where to start, Let's install ROS on the Raspberry Pi.
+
+NO! First check that the git is all upto date and such.... It is btw.
+
+Now, proceed with no fear that it's been, oh, only a month or two since I worked on this. Seems longer.... Anyway, first, let's try to be lazy and install everything using the LCAS script from
+
+https://github.com/LCAS/rosdistro/wiki#batch-install
+
+Oh buggeration. That means it needs to be running on ubuntu, not Raspbian. will that work? Are they near enough the same? Fuck it.
+
+To make it simple, just copy this and paste in your shell:
+
+    sudo ls (this is just to cache you admin password for the next steps)
+    sudo apt-get update && sudo apt-get install curl (curl is required for the next step)
+    curl https://raw.githubusercontent.com/LCAS/rosdistro/master/lcas-rosdistro-setup.sh | bash - 
+	
+(should install everything required)
+
+If the above has worked, there's no need to read any further.
