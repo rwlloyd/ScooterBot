@@ -126,7 +126,7 @@ To tail the cmd line output of the service...
 
 
 
-# ROS-ification
+# ROS-ification 10/5/21
 
 Where to start, Let's install ROS on the Raspberry Pi.
 
@@ -138,12 +138,30 @@ https://github.com/LCAS/rosdistro/wiki#batch-install
 
 Oh buggeration. That means it needs to be running on ubuntu, not Raspbian. will that work? Are they near enough the same? Fuck it.
 
-To make it simple, just copy this and paste in your shell:
+	To make it simple, just copy this and paste in your shell:
 
-    sudo ls (this is just to cache you admin password for the next steps)
-    sudo apt-get update && sudo apt-get install curl (curl is required for the next step)
-    curl https://raw.githubusercontent.com/LCAS/rosdistro/master/lcas-rosdistro-setup.sh | bash - 
-	
-(should install everything required)
+		sudo ls (this is just to cache you admin password for the next steps)
+		sudo apt-get update && sudo apt-get install curl (curl is required for the next step)
+		curl https://raw.githubusercontent.com/LCAS/rosdistro/master/lcas-rosdistro-setup.sh | bash - 
+		
+	(should install everything required)
 
-If the above has worked, there's no need to read any further.
+	If the above has worked, there's no need to read any further.
+
+Well, that's a negatory... and really, we want this on a pi4 anyway and that linux image is waaaaay past 18.04 so maybe it's time to look to the wider internet.
+
+*Googles "raspberry pi 4 ros melodic image"*
+
+Ooh.... looky here Susan.
+
+http://wiki.ros.org/ROSberryPi/Installing%20ROS%20Melodic%20on%20the%20Raspberry%20Pi
+
+or better still, heres the raspberry pi 3 ubuntu image:
+
+https://cdimage.ubuntu.com/releases/18.04.5/release/ubuntu-18.04.5-preinstalled-server-armhf+raspi3.img.xz
+
+from this page
+
+https://cdimage.ubuntu.com/releases/18.04.5/release/
+
+Then we'll try running the LCAS script again....
