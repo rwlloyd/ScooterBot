@@ -165,3 +165,15 @@ from this page
 https://cdimage.ubuntu.com/releases/18.04.5/release/
 
 Then we'll try running the LCAS script again....
+
+nooooooooooooooppppppeee.
+
+all hail the ROS wiki
+
+http://wiki.ros.org/ROSberryPi/Installing%20ROS%20Melodic%20on%20the%20Raspberry%20Pi
+
+basically, install ubuntu MATE 10.04 then hopefully the lcas script... othewise, just do it from scratch following the wiki. yepp. 
+
+this link is how to download and intall ubuntu. make sure you get the right oe for your pi. """armhf""" is for the pi 3b+
+
+https://www.intorobotics.com/installing-ros-melodic-on-raspberry-pi-3b-running-ubuntu-mate-18-04-2-bionic/
