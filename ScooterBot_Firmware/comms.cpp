@@ -36,9 +36,9 @@ void checkConnection() {
   }
 }
 
-// When new characters are received, the serialEvent interrupt triggers this function
+// When new characters are received, the serialEvent interrupt triggers this callback
 void serialEvent()   {
-  // Read the Serial Buffer
+  // Read the Serial Buffer into the received array
   for (int i = 0; i < messageLength; i++) {
     received[i] = Serial.read();
     delay(1);
@@ -51,7 +51,7 @@ void serialEvent()   {
 
 // Function to split up the received serial command and set the appropriate variables
 void processSerialCommand() {
-  // Do something with the received message here
+  // ***Do something with the received message here***
 
   error = bool(received[0]);                                  // Error Flag
   enable = bool(received[1]);                          // Motor Enable Flag
